@@ -1,0 +1,131 @@
+Nightmares of Meloen currently supports two modes for inclusion:
+================================================================
+
+   - include Nightmares of Meloen in your own era
+     (or an UMC era you have downloaded)
+
+   - include Nightmares of Meloen(dev) in World Conquest MP scenario
+
+
+
+Include Nightmares of Meloen in your own era:
+-----------------------------------------------
+If you want to include Nightmares of Meloen faction in your era, follow the instructions in the file eras/my_era+nightmares.cfg.
+
+The races and traits defined in this add-on are protected (and define) with the following macros:
+    RACE_ABERRATION, RACE_ELEMENTAL, RACE_INSECT, RACE_NIGHTMARE
+    TRAIT_RUBY, TRAIT_DIAMOND, TRAIT_SAPPHIRE, TRAIT_EMERALD
+    TRAIT_INSECT, TRAIT_NIGHTMARE
+    UNHATCHED_TRAITS, UNHATCHED_TO_STANDARD_TRAITS
+
+It your own era is using the same traits or races, to avoid conflicts you should protect the definitions in you own era with the same macro.
+For a trait, change the lines:
+
+    #define TRAIT_RUBY
+        [trait]
+            id=ruby
+            [...]
+        [/trait]
+    #enddef
+
+into:
+
+    #ifndef TRAIT_RUBY
+    #define TRAIT_RUBY
+        [trait]
+            id=ruby
+            [...]
+        [/trait]
+    #enddef
+    #endif
+
+For a race, change the lines:
+
+    [race]
+        id=elemental
+        [...]
+    [/race]
+
+into:
+
+    #ifndef RACE_ELEMENTAL
+    #define RACE_ELEMENTAL
+    #enddef
+    [race]
+        id=elemental
+        [...]
+    [/race]
+    #endif
+
+
+
+Include Nightmares of Meloen(dev) in World Conquest:
+----------------------------------------------------
+NB: The era Default+(dev)Nightmares must be selected for playing World Conquest.
+
+For World Conquest on version 1.10/1.11: in the file ~add-ons/World_Conquest/utils/variables.cfg, 
+
+
+1- at the end of macro WORLD_CONQUEST_GROUP_DEFINITIONS, add the two lines:
+...........................................................................
+
+{~add-ons/Nightmares_of_Meloen/devel/utils/world_conquest.cfg}
+{WORLD_CONQUEST_ERA_SPECIFIC_GROUP_DEFINITIONS}
+
+
+So the code:
+
+    #define WORLD_CONQUEST_GROUP_DEFINITIONS
+    [group]
+        id=dummy
+        leader=none
+    [/group]
+    [group]
+        [...]
+    [/group]
+    #enddef
+
+should become:
+
+    #define WORLD_CONQUEST_GROUP_DEFINITIONS
+    [group]
+        id=dummy
+        leader=none
+    [/group]
+    [group]
+        [...]
+    [/group]
+    {~add-ons/Nightmares_of_Meloen/devel/utils/world_conquest.cfg}
+    {WORLD_CONQUEST_ERA_SPECIFIC_GROUP_DEFINITIONS}
+    #enddef
+
+
+2- at the end of macro WORLD_CONQUEST_ARTIFACT_DEFINITIONS, add the two lines:
+..............................................................................
+
+{~add-ons/Nightmares_of_Meloen/devel/utils/world_conquest.cfg}
+{WORLD_CONQUEST_ERA_SPECIFIC_ARTIFACT_DEFINITIONS}
+
+
+So the code:
+
+    #define WORLD_CONQUEST_ARTIFACT_DEFINITIONS
+    [group]
+        id=dummy
+        leader=none
+    [/group]
+    [group]
+        [...]
+    [/group]
+    #enddef
+
+should become:
+
+    #define WORLD_CONQUEST_ARTIFACT_DEFINITIONS
+    [artifact]
+        [...]
+    [/artifact]
+    {~add-ons/Nightmares_of_Meloen/devel/utils/world_conquest.cfg}
+    {WORLD_CONQUEST_ERA_SPECIFIC_ARTIFACT_DEFINITIONS}
+    #enddef
+
