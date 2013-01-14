@@ -3,7 +3,7 @@
 # Guillaume Pascal <guillaume.pascal43@laposte.net>, 2012.
 msgid ""
 msgstr ""
-"Project-Id-Version: The_Sojournings_of_Grog-1.10\n"
+"Project-Id-Version: Nightmares_of_Meloen-1.10\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-12-31 09:52-0500\n"
 "PO-Revision-Date: 2012-04-20 14:01+0200\n"
